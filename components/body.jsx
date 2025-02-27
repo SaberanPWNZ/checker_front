@@ -1,32 +1,40 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import mockApiData from '../components/mockdata'; 
+
 
 export default function Body() {
   const [data, setData] = useState([]);
   const [partners, setPartners] = useState([]);
+  const API_URL = "http://193.0.61.147:8000/checkers/scraped/";
 
   useEffect(() => {
-    if (Array.isArray(mockApiData)) {
-      setData(mockApiData);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error("Ошибка при получении данных");
+        
+        const result = await response.json();
+        setData(result);
 
-      const allPartners = mockApiData.reduce((acc, item) => {
-        if (item.partners) {
-          Object.keys(item.partners).forEach((partner) => {
-            if (!acc.includes(partner)) {
-              acc.push(partner);
-            }
-          });
-        }
-        return acc;
-      }, []);
+        const allPartners = result.reduce((acc, item) => {
+          if (item.partners) {
+            Object.keys(item.partners).forEach((partner) => {
+              if (!acc.includes(partner)) {
+                acc.push(partner);
+              }
+            });
+          }
+          return acc;
+        }, []);
 
-      setPartners(allPartners);
-      console.log(allPartners);
-    } else {
-      console.error("mockApiData is not an array!");
-    }
+        setPartners(allPartners);
+      } catch (error) {
+        console.error("Ошибка запроса:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
