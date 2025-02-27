@@ -42,8 +42,16 @@ export default function Body() {
  Пошук
 </button>
     <div className="inline-block">
-      <a href='www.google.com'>WACOM</a>
-      <a href='www.google.com'>WACOM ACC</a>
+      <a className='p-1 m-2 border-collapse border rounded-xl border-gray-900 
+      transition-all duration-300 ease-[cubic-bezier(.23,1,0.32,1)] 
+          select-none -webkit-select-none touch-manipulation will-change-transform disabled:pointer-events-none
+           hover:text-white hover:bg-gray-900 hover:shadow-xl 
+           hover:transform hover:-translate-y-0.5 active:shadow-none active:transform active:translate-y-0"' href='www.google.com'>WACOM</a>
+      <a className='p-1 m-2 border-collapse border rounded-xl border-gray-900
+      transition-all duration-300 ease-[cubic-bezier(.23,1,0.32,1)] 
+          select-none -webkit-select-none touch-manipulation will-change-transform disabled:pointer-events-none
+           hover:text-white hover:bg-gray-900 hover:shadow-xl 
+           hover:transform hover:-translate-y-0.5 active:shadow-none active:transform active:translate-y-0"' href='www.google.com'>WACOM ACC</a>
     </div>
 
       <table className="min-w-full border-collapse border border-gray-300">
